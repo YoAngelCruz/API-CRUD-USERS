@@ -1,10 +1,12 @@
+const bcrypt = require('bcrypt');
 const pool = require('../config/db'); // Importa la configuración de la conexión a la base de datos
 
 const Profesores = {
   async crearProfesor(nombre, num_tel_p, email, contraseña) {
     try {
+      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
       const query = 'INSERT INTO profesores (nombre, num_tel_p, email, contraseña) VALUES ($1, $2, $3, $4)';
-      const values = [nombre, num_tel_p, email, contraseña];
+      const values = [nombre, num_tel_p, email, hashedPassword]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
       throw error;
