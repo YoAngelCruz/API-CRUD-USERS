@@ -16,8 +16,9 @@ const InscripcionesController = {
     try {
       const inscripcion = await Inscripciones.obtenerInscripcionPorId(id_inscripcion);
       if (!inscripcion) {
-        return res.status(404).json({ message: 'Inscripción no encontrada' });
+        return res.status(404).json({ message: 'La inscripción no se encuentra registrado' });
       }
+
       res.status(200).json(inscripcion);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener la inscripción' });
@@ -37,6 +38,11 @@ const InscripcionesController = {
     const { id_inscripcion } = req.params;
     const { id_alumno, id_grupo, fecha } = req.body;
     try {
+      const inscripcion = await Inscripciones.obtenerInscripcionPorId(id_inscripcion);
+      if (!inscripcion) {
+        return res.status(404).json({ message: 'La inscripción no se encuentra registrado' });
+      }
+
       await Inscripciones.actualizarDatosInscripcion(id_inscripcion, id_alumno, id_grupo, fecha);
       res.status(200).json({ message: 'Datos de la inscripción actualizados correctamente' });
     } catch (error) {
@@ -47,6 +53,11 @@ const InscripcionesController = {
   async eliminarInscripcion(req, res) {
     const { id_inscripcion } = req.params;
     try {
+      const inscripcion = await Inscripciones.obtenerInscripcionPorId(id_inscripcion);
+      if (!inscripcion) {
+        return res.status(404).json({ message: 'La inscripción no se encuentra registrado' });
+      }
+      
       await Inscripciones.eliminarInscripcion(id_inscripcion);
       res.status(200).json({ message: 'Inscripción eliminada correctamente' });
     } catch (error) {

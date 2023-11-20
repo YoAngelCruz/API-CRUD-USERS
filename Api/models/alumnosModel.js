@@ -1,10 +1,10 @@
 const pool = require('../config/db'); // Importa la configuración de la conexión a la base de datos
 
 const Alumnos = {
-  async crearAlumno(nombre, clave, turno, fecha_inicio, edad, domicilio, num_tel_a, email, contraseña, tutor) {
+  async crearAlumno(nombre, clave, turno, fecha_inicio, edad, curp, domicilio, num_tel_a, email, contraseña, tutor) {
     try {
-      const query = 'INSERT INTO alumnos (nombre, clave, turno, fecha_inicio, edad, domicilio, num_tel_a, email, contraseña, tutor) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
-      const values = [nombre, clave, turno, fecha_inicio, edad, domicilio, num_tel_a, email, contraseña, tutor];
+      const query = 'INSERT INTO alumnos (nombre, clave, turno, fecha_inicio, edad, curp, domicilio, num_tel_a, email, contraseña, tutor) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
+      const values = [nombre, clave, turno, fecha_inicio, edad, curp, domicilio, num_tel_a, email, contraseña, tutor];
       await pool.query(query, values);
     } catch (error) {
       throw error;
@@ -79,10 +79,10 @@ const Alumnos = {
     }
   },
 
-  async inscribirseAGrupo(id_alumno, id_grupo) {
+  async inscribirseAGrupo(id_alumno, id_grupo, fecha) {
     try {
-      const query = 'INSERT INTO inscripcion (id_alumno, id_grupo) VALUES ($1, $2)';
-      const values = [id_alumno, id_grupo];
+      const query = 'INSERT INTO inscripcion (id_alumno, id_grupo, fecha) VALUES ($1, $2, $3)';
+      const values = [id_alumno, id_grupo, fecha];
       await pool.query(query, values);
     } catch (error) {
       throw error;

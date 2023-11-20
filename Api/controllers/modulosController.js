@@ -16,8 +16,9 @@ const ModulosController = {
     try {
       const modulo = await Modulos.obtenerModuloPorId(id_modulo);
       if (!modulo) {
-        return res.status(404).json({ message: 'Módulo no encontrado' });
+        return res.status(404).json({ message: 'El módulo no se encuentra registrado' });
       }
+
       res.status(200).json(modulo);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener el módulo' });
@@ -37,6 +38,11 @@ const ModulosController = {
     const { id_modulo } = req.params;
     const { nombre, descripcion, duracion } = req.body;
     try {
+      const modulo = await Modulos.obtenerModuloPorId(id_modulo);
+      if (!modulo) {
+        return res.status(404).json({ message: 'El módulo no se encuentra registrado' });
+      }
+      
       await Modulos.actualizarDatosModulo(id_modulo, nombre, descripcion, duracion);
       res.status(200).json({ message: 'Datos del módulo actualizados correctamente' });
     } catch (error) {
@@ -47,6 +53,11 @@ const ModulosController = {
   async eliminarModulo(req, res) {
     const { id_modulo } = req.params;
     try {
+      const modulo = await Modulos.obtenerModuloPorId(id_modulo);
+      if (!modulo) {
+        return res.status(404).json({ message: 'El módulo no se encuentra registrado' });
+      }
+      
       await Modulos.eliminarModulo(id_modulo);
       res.status(200).json({ message: 'Módulo eliminado correctamente' });
     } catch (error) {

@@ -16,8 +16,9 @@ const GruposController = {
     try {
       const grupo = await Grupos.obtenerGrupoPorId(id_grupo);
       if (!grupo) {
-        return res.status(404).json({ message: 'Grupo no encontrado' });
+        return res.status(404).json({ message: 'El grupo no se encuentra registrado' });
       }
+
       res.status(200).json(grupo);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener el grupo' });
@@ -47,6 +48,11 @@ const GruposController = {
     const { id_grupo } = req.params;
     const { id_profesor, id_modulo, fecha_inicio, fecha_fin } = req.body;
     try {
+      const grupo = await Grupos.obtenerGrupoPorId(id_grupo);
+      if (!grupo) {
+        return res.status(404).json({ message: 'El grupo no se encuentra registrado' });
+      }
+
       await Grupos.actualizarDatosGrupo(id_grupo, id_profesor, id_modulo, fecha_inicio, fecha_fin);
       res.status(200).json({ message: 'Datos del grupo actualizados correctamente' });
     } catch (error) {
@@ -57,6 +63,11 @@ const GruposController = {
   async eliminarGrupo(req, res) {
     const { id_grupo } = req.params;
     try {
+      const grupo = await Grupos.obtenerGrupoPorId(id_grupo);
+      if (!grupo) {
+        return res.status(404).json({ message: 'El grupo no se encuentra registrado' });
+      }
+      
       await Grupos.eliminarGrupo(id_grupo);
       res.status(200).json({ message: 'Grupo eliminado correctamente' });
     } catch (error) {

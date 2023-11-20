@@ -16,8 +16,9 @@ const CalificacionesController = {
     try {
       const calificacion = await Calificaciones.obtenerCalificacionPorId(id_calificacion);
       if (!calificacion) {
-        return res.status(404).json({ message: 'Calificación no encontrada' });
+        return res.status(404).json({ message: 'La calificacion no se encuentra registrado' });
       }
+      
       res.status(200).json(calificacion);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener la calificación' });
@@ -38,6 +39,7 @@ const CalificacionesController = {
     const { id_calificacion } = req.params;
     const { calificacion, fecha, aprobado } = req.body;
     try {
+      
       await Calificaciones.actualizarCalificacion(id_calificacion, calificacion, fecha, aprobado);
       res.status(200).json({ message: 'Calificación actualizada correctamente' });
     } catch (error) {
@@ -48,6 +50,11 @@ const CalificacionesController = {
   async eliminarCalificacion(req, res) {
     const { id_calificacion } = req.params;
     try {
+      const calificacion = await Calificaciones.obtenerCalificacionPorId(id_calificacion);
+      if (!calificacion) {
+        return res.status(404).json({ message: 'La calificacion no se encuentra registrado' });
+      }
+      
       await Calificaciones.eliminarCalificacion(id_calificacion);
       res.status(200).json({ message: 'Calificación eliminada correctamente' });
     } catch (error) {

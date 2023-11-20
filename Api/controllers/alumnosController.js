@@ -8,6 +8,7 @@ const AlumnosController = {
       turno,
       fecha_inicio,
       edad,
+      curp,
       domicilio,
       num_tel_a,
       email,
@@ -21,6 +22,7 @@ const AlumnosController = {
         turno,
         fecha_inicio,
         edad,
+        curp,
         domicilio,
         num_tel_a,
         email,
@@ -38,8 +40,9 @@ const AlumnosController = {
     try {
       const alumno = await Alumnos.obtenerAlumnoPorId(id_alumno);
       if (!alumno) {
-        return res.status(404).json({ message: 'Alumno no encontrado' });
+        return res.status(404).json({ message: 'El alumno no se encuentra registrado' });
       }
+      
       res.status(200).json(alumno);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener el alumno' });
@@ -69,6 +72,11 @@ const AlumnosController = {
     const { id_alumno } = req.params;
     const { contraseña, domicilio } = req.body;
     try {
+      const alumno = await Alumnos.obtenerAlumnoPorId(id_alumno);
+      if (!alumno) {
+        return res.status(404).json({ message: 'El alumno no se encuentra registrado' });
+      }
+
       await Alumnos.actualizarDatosAlumno(id_alumno, { contraseña, domicilio });
       res.status(200).json({ message: 'Datos del alumno actualizados correctamente' });
     } catch (error) {
@@ -79,6 +87,11 @@ const AlumnosController = {
   async eliminarAlumno(req, res) {
     const { id_alumno } = req.params;
     try {
+      const alumno = await Alumnos.obtenerAlumnoPorId(id_alumno);
+      if (!alumno) {
+        return res.status(404).json({ message: 'El alumno no se encuentra registrado' });
+      }
+      
       await Alumnos.eliminarAlumno(id_alumno);
       res.status(200).json({ message: 'Alumno eliminado correctamente' });
     } catch (error) {
@@ -87,9 +100,10 @@ const AlumnosController = {
   },
 
   async inscribirseAGrupo(req, res) {
-    const { id_alumno, id_grupo } = req.body;
+    const { id_alumno, id_grupo, fecha } = req.body;
     try {
-      await Alumnos.inscribirseAGrupo(id_alumno, id_grupo);
+      
+      await Alumnos.inscribirseAGrupo(id_alumno, id_grupo, fecha);
       res.status(200).json({ message: 'Alumno inscrito correctamente en el grupo' });
     } catch (error) {
       res.status(500).json({ error: 'Error al inscribir el alumno en el grupo' });
