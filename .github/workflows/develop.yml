@@ -42,8 +42,6 @@ jobs:
       run: sed -i 's/MY_DEV_PASSWORD/${{secrets.DEV_PASSWORD}}/g' manifests/icecapi-configmap.yaml      
     - name: update MY_DEV_HOST
       run: sed -i 's/MY_DEV_HOST/${{secrets.DEV_HOST}}/g' manifests/icecapi-configmap.yaml      
-    - name: update MY_DEV_PORT
-      run: sed -i 's/MY_DEV_PORT/${{secrets.DEV_PORT}}/g' manifests/icecapi-configmap.yaml
       
     - name: show config
       run: cat manifests/icecapi-configmap.yaml
