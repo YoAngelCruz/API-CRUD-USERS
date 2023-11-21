@@ -6,9 +6,9 @@ metadata:
    app: postgres
 data:
  DEV_SECRET_KEY: icecapi-crud
- TEST_DB_DATABASE: krlzymyr
- TEST_DB_USER: krlzymyr
- TEST_DB_PASSWORD: Pp0vy4dfnruhorz8iX6HDdNZyxzF_SDx
- TEST_DB_HOST: flora.db.elephantsql.com
+ TEST_DB_DATABASE: MY_DEV_DATABASE
+ TEST_DB_USER: MY_DEV_USER
+ TEST_DB_PASSWORD: MY_DEV_PASSWORD
+ TEST_DB_HOST: MY_DEV_HOST
  TEST_DB_PORT: '5432'
 
