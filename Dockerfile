@@ -1,5 +1,5 @@
 # Usa una imagen base de Node.js
-FROM node:16.x
+FROM node:16.19.0
 
 # Establece el directorio de trabajo en el contenedor
 WORKDIR /Api
