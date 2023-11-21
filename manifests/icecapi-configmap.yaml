@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: icecapi-config
+ labels:
+   app: postgres
+data:
+ DEV_SECRET_KEY: MY_DEV_SECRET_KEY
+ DEV_DATABASE: MY_DEV_DATABASE
+ DEV_USER: MY_DEV_USER
+ DEV_PASSWORD: MY_DEV_PASSWORD
+ DEV_HOST: MY_DEV_HOST
+ DEV_PORT: MY_DEV_PORT
+
