@@ -32,16 +32,7 @@ jobs:
     - name: Show .env file
       run: cat .env
       
-    - name: update DEV_SECRET_KEY
-      run: sed -i 's/MY_DEV_SECRET_KEY/${{secrets.DEV_SECRET_KEY}}/g' manifests/icecapi-configmap.yaml      
-    - name: update MY_DEV_DATABASE
-      run: sed -i 's/MY_DEV_DATABASE/${{secrets.DEV_DATABASE}}/g' manifests/icecapi-configmap.yaml      
-    - name: update MY_DEV_USER
-      run: sed -i 's/MY_DEV_USER/${{secrets.DEV_USER}}/g' manifests/icecapi-configmap.yaml      
-    - name: update MY_DEV_PASSWORD
-      run: sed -i 's/MY_DEV_PASSWORD/${{secrets.DEV_PASSWORD}}/g' manifests/icecapi-configmap.yaml      
-    - name: update MY_DEV_HOST
-      run: sed -i 's/MY_DEV_HOST/${{secrets.DEV_HOST}}/g' manifests/icecapi-configmap.yaml      
+   
       
     - name: show config
       run: cat manifests/icecapi-configmap.yaml
