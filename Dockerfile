@@ -14,8 +14,6 @@ RUN npm install
 # Copia el resto de los archivos de la aplicación
 COPY . /Api-Crud
 
-# Expón el puerto en el que la aplicación Node.js se ejecutará (opcional)
-EXPOSE 8080
 
 # Comando para iniciar tu aplicación Node.js Express
 CMD ["node", "app.js"] 
