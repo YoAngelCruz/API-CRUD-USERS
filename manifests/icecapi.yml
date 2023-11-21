@@ -36,6 +36,6 @@ spec:
   type: ClusterIP  
   ports:
   - name: "icecapi-yoangelcruz"
-    port: 8080
+    port: 3000
   selector:
     app: icecapi-yoangelcruz
