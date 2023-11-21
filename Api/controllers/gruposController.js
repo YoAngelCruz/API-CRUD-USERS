@@ -2,9 +2,9 @@ const Grupos = require('../models/gruposModel');
 
 const GruposController = {
   async crearGrupo(req, res) {
-    const { id_profesor, id_modulo, fecha_inicio, fecha_fin } = req.body;
+    const { descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin} = req.body;
     try {
-      await Grupos.crearGrupo(id_profesor, id_modulo, fecha_inicio, fecha_fin);
+      await Grupos.crearGrupo(descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin);
       res.status(201).json({ message: 'Grupo creado correctamente' });
     } catch (error) {
       res.status(500).json({ error: 'Error al crear el grupo' });

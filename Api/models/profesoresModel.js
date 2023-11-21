@@ -47,8 +47,9 @@ const Profesores = {
 
   async actualizarDatosProfesor(id_profesor, contraseña) {
     try {
+      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
       const query = 'UPDATE profesores SET contraseña = $1 WHERE id_profesor = $2';
-      const values = [contraseña, id_profesor];
+      const values = [hashedPassword, id_profesor];
       await pool.query(query, values);
     } catch (error) {
       throw error;
