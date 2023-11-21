@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: icecapi
+  name: icecapi-yoangelcruz
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: icecapi
+      app: icecapi-yoangelcruz
   template:
     metadata:
       labels:
-        app: icecapi
+        app: icecapi-yoangelcruz
     spec:
       containers:
       - image: okteto.dev/icecapi-yoangelcruz:latest
@@ -29,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: icecapi
+  name: icecapi-yoangelcruz
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "icecapi"
+  - name: "icecapi-yoangelcruz"
     port: 8080
   selector:
-    app: icecapi
+    app: icecapi-yoangelcruz
