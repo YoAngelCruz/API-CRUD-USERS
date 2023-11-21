@@ -45,7 +45,7 @@ jobs:
     - name: Deploy
       uses: okteto/pipeline@2.7.0
       with:
-          name: yoangelcruz # cambiar por su namespace
+          name: icecapi-yoangelcruz # cambiar por su namespace
           timeout: 10m
       # Agrega aquí los pasos necesarios para el despliegue de tu API Node.js
       # Esto podría variar según tu proveedor de alojamiento (por ejemplo, Heroku, AWS, Azure, etc.)
