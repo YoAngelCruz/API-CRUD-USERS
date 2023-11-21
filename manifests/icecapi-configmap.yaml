@@ -6,10 +6,9 @@ metadata:
    app: postgres
 data:
  DEV_SECRET_KEY: i-love-icecapi
- DEV_SECRET_KEY: MY_DEV_SECRET_KEY
- DEV_DATABASE: MY_DEV_DATABASE
- DEV_USER: MY_DEV_USER
- DEV_PASSWORD: MY_DEV_PASSWORD
- DEV_HOST: MY_DEV_HOST
+ DEV_DATABASE: krlzymyr
+ DEV_USER: krlzymyr
+ DEV_PASSWORD: Pp0vy4dfnruhorz8iX6HDdNZyxzF_SDx
+ DEV_HOST: flora.db.elephantsql.com
  DEV_PORT: 5432
 
