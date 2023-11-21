@@ -11,7 +11,7 @@ COPY package*.json ./Api
 RUN npm install
 
 # Copia el resto de los archivos de la aplicación
-COPY ./Api
+COPY . /Api
 
 # Expón el puerto en el que la aplicación Node.js se ejecutará (opcional)
 EXPOSE 8080
