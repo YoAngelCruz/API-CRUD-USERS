@@ -5,10 +5,10 @@ metadata:
  labels:
    app: postgres
 data:
- DEV_SECRET_KEY: i-love-icecapi
- DEV_DATABASE: krlzymyr
- DEV_USER: krlzymyr
- DEV_PASSWORD: Pp0vy4dfnruhorz8iX6HDdNZyxzF_SDx
- DEV_HOST: flora.db.elephantsql.com
- DEV_PORT: '5432'
+ DEV_SECRET_KEY: icecapi-crud
+ TEST_DB_DATABASE: krlzymyr
+ TEST_DB_USER: krlzymyr
+ TEST_DB_PASSWORD: Pp0vy4dfnruhorz8iX6HDdNZyxzF_SDx
+ TEST_DB_HOST: flora.db.elephantsql.com
+ TEST_DB_PORT: '5432'
 
