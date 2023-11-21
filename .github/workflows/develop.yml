@@ -1,0 +1,60 @@
+name: develop CI/CD
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.x # Reemplaza con la versión de Node.js que estás utilizando
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Create .env file
+      run: |
+        echo "TEST_DB_USER=${{ secrets.TEST_USER }}" >> .env
+        echo "TEST_DB_HOST=${{ secrets.TEST_HOST }}" >> .env
+        echo "TEST_DB_DATABASE=${{ secrets.TEST_DATABASE }}" >> .env
+        echo "TEST_DB_PASSWORD=${{ secrets.TEST_PASSWORD }}" >> .env
+        echo "TEST_DB_PORT=${{ secrets.TEST_PORT }}" >> .env
+
+    - name: Show .env file
+      run: cat .env
+      
+    - name: update DEV_SECRET_KEY
+      run: sed -i 's/MY_DEV_SECRET_KEY/${{secrets.DEV_SECRET_KEY}}/g' manifests/icecapi-configmap.yaml      
+    - name: update MY_DEV_DATABASE
+      run: sed -i 's/MY_DEV_DATABASE/${{secrets.DEV_DATABASE}}/g' manifests/icecapi-configmap.yaml      
+    - name: update MY_DEV_USER
+      run: sed -i 's/MY_DEV_USER/${{secrets.DEV_USER}}/g' manifests/icecapi-configmap.yaml      
+    - name: update MY_DEV_PASSWORD
+      run: sed -i 's/MY_DEV_PASSWORD/${{secrets.DEV_PASSWORD}}/g' manifests/icecapi-configmap.yaml      
+    - name: update MY_DEV_HOST
+      run: sed -i 's/MY_DEV_HOST/${{secrets.DEV_HOST}}/g' manifests/icecapi-configmap.yaml      
+      
+    - name: show config
+      run: cat manifests/icecapi-configmap.yaml
+    # Aquí puedes agregar más pasos según tus necesidades, como ejecutar pruebas, etc.
+
+
+    - uses: okteto/context@2.7.0
+      with:
+       token: ${{ secrets.OKTETO_TOKEN }}
+    - name: Deploy
+      uses: okteto/pipeline@2.7.0
+      with:
+          name: icecapi-yoangelcruz # cambiar por su namespace
+          timeout: 10m
+      # Agrega aquí los pasos necesarios para el despliegue de tu API Node.js
+      # Esto podría variar según tu proveedor de alojamiento (por ejemplo, Heroku, AWS, Azure, etc.)
