@@ -48,13 +48,14 @@ const Alumnos = {
   async actualizarDatosAlumno(id_alumno, camposActualizables) {
     try {
       const { contraseña, domicilio } = camposActualizables;
+      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
       let query = 'UPDATE alumnos SET ';
       const values = [];
       const params = [];
 
       if (contraseña !== undefined) {
         params.push(`contraseña = $${params.length + 1}`);
-        values.push(contraseña);
+        values.push(hashedPassword);
       }
 
       if (domicilio !== undefined) {

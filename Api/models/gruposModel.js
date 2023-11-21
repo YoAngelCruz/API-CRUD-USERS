@@ -1,10 +1,10 @@
 const pool = require('../config/db');
 
 const Grupos = {
-  async crearGrupo(id_profesor, id_modulo, fecha_inicio, fecha_fin) {
+  async crearGrupo(descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin) {
     try {
-      const query = 'INSERT INTO grupo (id_profesor, id_modulo, fecha_inicio, fecha_fin) VALUES ($1, $2, $3, $4)';
-      const values = [id_profesor, id_modulo, fecha_inicio, fecha_fin];
+      const query = 'INSERT INTO grupo (descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin) VALUES ($1, $2, $3, $4, $5)';
+      const values = [descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin];
       await pool.query(query, values);
     } catch (error) {
       throw error;
@@ -43,10 +43,10 @@ const Grupos = {
     }
   },
 
-  async actualizarDatosGrupo(id_grupo, id_profesor, id_modulo, fecha_inicio, fecha_fin) {
+  async actualizarDatosGrupo(id_grupo, descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin) {
     try {
-      const query = 'UPDATE grupo SET id_profesor = $1, id_modulo = $2, fecha_inicio = $3, fecha_fin = $4 WHERE id_grupo = $5';
-      const values = [id_profesor, id_modulo, fecha_inicio, fecha_fin, id_grupo];
+      const query = 'UPDATE grupo SET descripcion = $1, id_profesor = $2, id_modulo = $3, fecha_inicio = $4, fecha_fin = $5 WHERE id_grupo = $6';
+      const values = [descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin, id_grupo];
       await pool.query(query, values);
     } catch (error) {
       throw error;

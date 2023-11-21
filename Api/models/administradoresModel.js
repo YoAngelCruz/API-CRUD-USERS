@@ -36,8 +36,9 @@ const Administradores = {
 
   async actualizarDatosAdministrador(id_admin, nombre, num_tel_a, email, contraseña) {
     try {
+      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
       const query = 'UPDATE administradores SET nombre = $1, num_tel_a = $2, email = $3, contraseña = $4 WHERE id_admin = $5';
-      const values = [nombre, num_tel_a, email, contraseña, id_admin];
+      const values = [nombre, num_tel_a, email, hashedPassword, id_admin]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
       throw error;
