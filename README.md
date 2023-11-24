@@ -8,5 +8,3 @@ Administrators:
 - Groups
 - registrations
 - Grades
-
-#release
