@@ -15,7 +15,7 @@ const Alumnos = {
 
   async obtenerAlumnoPorId(id_alumno) {
     try {
-      const query = 'SELECT * FROM alumnos WHERE id_alumno = $1';
+      const query = 'SELECT * FROM alumnos WHERE id = $1';
       const values = [id_alumno];
       const { rows } = await pool.query(query, values);
       return rows[0];
@@ -63,7 +63,7 @@ const Alumnos = {
         values.push(domicilio);
       }
 
-      query += params.join(', ') + ' WHERE id_alumno = $' + (params.length + 1);
+      query += params.join(', ') + ' WHERE id = $' + (params.length + 1);
       values.push(id_alumno);
 
       await pool.query(query, values);
@@ -74,7 +74,7 @@ const Alumnos = {
 
   async eliminarAlumno(id_alumno) {
     try {
-      const query = 'DELETE FROM alumnos WHERE id_alumno = $1';
+      const query = 'DELETE FROM alumnos WHERE id = $1';
       const values = [id_alumno];
       await pool.query(query, values);
     } catch (error) {
