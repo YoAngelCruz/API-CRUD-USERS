@@ -15,7 +15,7 @@ const Profesores = {
 
   async obtenerProfesorPorId(id_profesor) {
     try {
-      const query = 'SELECT * FROM profesores WHERE id_profesor = $1';
+      const query = 'SELECT * FROM profesores WHERE id = $1';
       const values = [id_profesor];
       const { rows } = await pool.query(query, values);
       return rows[0];
@@ -48,7 +48,7 @@ const Profesores = {
   async actualizarDatosProfesor(id_profesor, contraseña) {
     try {
       const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
-      const query = 'UPDATE profesores SET contraseña = $1 WHERE id_profesor = $2';
+      const query = 'UPDATE profesores SET contraseña = $1 WHERE id = $2';
       const values = [hashedPassword, id_profesor];
       await pool.query(query, values);
     } catch (error) {
@@ -58,7 +58,7 @@ const Profesores = {
 
   async eliminarProfesor(id_profesor) {
     try {
-      const query = 'DELETE FROM profesores WHERE id_profesor = $1';
+      const query = 'DELETE FROM profesores WHERE id = $1';
       const values = [id_profesor];
       await pool.query(query, values);
     } catch (error) {
