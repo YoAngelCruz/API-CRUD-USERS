@@ -13,9 +13,9 @@ const AdministradoresController = {
   },
 
   async obtenerAdministradorPorId(req, res) {
-    const { id_admin } = req.params;
+    const { id } = req.params;
     try {
-      const administrador = await Administradores.obtenerAdministradorPorId(id_admin);
+      const administrador = await Administradores.obtenerAdministradorPorId(id);
       if (!administrador) {
         return res.status(404).json({ message: 'El administrador no se encuentra registrado' });
       }
@@ -38,32 +38,50 @@ const AdministradoresController = {
   },
 
   async actualizarDatosAdministrador(req, res) {
-    const { id_admin } = req.params;
-    const { nombre, num_tel_a, email, contraseña } = req.body;
+    const { id } = req.params;
+    const { nombre, num_tel_a, email} = req.body;
     try {
-      const administrador = await Administradores.obtenerAdministradorPorId(id_admin);
+      const administrador = await Administradores.obtenerAdministradorPorId(id);
   
       if (!administrador) {
         return res.status(404).json({ message: 'El administrador no se encuentra registrado' });
       }
 
-      await Administradores.actualizarDatosAdministrador(id_admin, nombre, num_tel_a, email, contraseña);
+      await Administradores.actualizarDatosAdministrador(id, nombre, num_tel_a, email);
       res.status(200).json({ message: 'Datos del administrador actualizados correctamente' });
     } catch (error) {
       res.status(500).json({ error: 'Error al actualizar los datos del administrador' });
     }
   },
+
+  async actualizarContraseñaAdministrador(req, res) {
+    const { id } = req.params;
+    const { contraseña } = req.body;
+    try {
+      const administrador = await Administradores.obtenerAdministradorPorId(id);
+  
+      if (!administrador) {
+        return res.status(404).json({ message: 'El administrador no se encuentra registrado' });
+      }
+
+      await Administradores.actualizarContraseñaAdministrador(id, contraseña);
+      res.status(200).json({ message: 'Contraseña del administrador actualizada correctamente' });
+    } catch (error) {
+      res.status(500).json({ error: 'Error al actualizar la Contraseña del administrador' });
+    }
+  },
+  
   async eliminarAdministrador(req, res) {
-    const { id_admin } = req.params;
+    const { id } = req.params;
     try {
       // Verificar si el administrador existe antes de eliminarlo
-      const administrador = await Administradores.obtenerAdministradorPorId(id_admin);
+      const administrador = await Administradores.obtenerAdministradorPorId(id);
   
       if (!administrador) {
         return res.status(404).json({ message: 'El administrador no se encuentra registrado' });
       }
   
-      await Administradores.eliminarAdministrador(id_admin);
+      await Administradores.eliminarAdministrador(id);
       res.status(200).json({ message: 'Administrador eliminado correctamente' });
     } catch (error) {
       res.status(500).json({ error: 'Error al eliminar el administrador' });
