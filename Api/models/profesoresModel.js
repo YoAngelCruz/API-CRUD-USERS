@@ -13,10 +13,10 @@ const Profesores = {
     }
   },
 
-  async obtenerProfesorPorId(id_profesor) {
+  async obtenerProfesorPorId(id) {
     try {
       const query = 'SELECT * FROM profesores WHERE id = $1';
-      const values = [id_profesor];
+      const values = [id];
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
@@ -45,21 +45,31 @@ const Profesores = {
     }
   },
 
-  async actualizarDatosProfesor(id_profesor, contraseña) {
+  async actualizarDatosProfesor(id, nombre, num_tel_p, email) {
     try {
-      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
-      const query = 'UPDATE profesores SET contraseña = $1 WHERE id = $2';
-      const values = [hashedPassword, id_profesor];
+      const query = 'UPDATE profesores SET nombre = $1, num_tel_p = $2, email = $3 WHERE id = $4';
+      const values = [nombre, num_tel_p, email, id]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
       throw error;
     }
   },
 
-  async eliminarProfesor(id_profesor) {
+  async actualizarContraseñaProfesor(id, contraseña) {
+    try {
+      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
+      const query = 'UPDATE profesores SET contraseña = $1 WHERE id = $2';
+      const values = [hashedPassword, id]; // Usa la contraseña encriptada
+      await pool.query(query, values);
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async eliminarProfesor(id) {
     try {
       const query = 'DELETE FROM profesores WHERE id = $1';
-      const values = [id_profesor];
+      const values = [id];
       await pool.query(query, values);
     } catch (error) {
       throw error;
