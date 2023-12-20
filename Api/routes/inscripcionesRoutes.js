@@ -4,6 +4,7 @@ const InscripcionesController = require('../controllers/inscripcionesController'
 
 // Rutas para las inscripciones
 router.post('/inscripciones', InscripcionesController.crearInscripcion);
+router.post('/inscripciones/many', InscripcionesController.crearInscripciones);
 router.get('/inscripciones/:id_inscripcion', InscripcionesController.obtenerInscripcionPorId);
 router.get('/inscripciones', InscripcionesController.obtenerTodasLasInscripciones);
 router.put('/inscripciones/:id_inscripcion', InscripcionesController.actualizarDatosInscripcion);
