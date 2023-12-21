@@ -7,6 +7,7 @@ const Grupos = {
       const values = [descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -18,6 +19,7 @@ const Grupos = {
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -28,6 +30,7 @@ const Grupos = {
       const { rows } = await pool.query(query);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -39,6 +42,7 @@ const Grupos = {
       const { rows } = await pool.query(query, values);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -49,6 +53,7 @@ const Grupos = {
       const values = [descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin, id_grupo];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -59,6 +64,7 @@ const Grupos = {
       const values = [id_grupo];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }

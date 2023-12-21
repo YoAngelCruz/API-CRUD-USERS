@@ -26,6 +26,7 @@ const Inscripciones = {
 
       await client.query('COMMIT');
     } catch (error) {
+      console.error(error);
       if (client) {
         await client.query('ROLLBACK');
       }
@@ -44,6 +45,7 @@ const Inscripciones = {
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -54,6 +56,7 @@ const Inscripciones = {
       const { rows } = await pool.query(query);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -64,6 +67,7 @@ const Inscripciones = {
       const values = [id_alumno, id_grupo, fecha, id_inscripcion];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -74,6 +78,7 @@ const Inscripciones = {
       const values = [id_inscripcion];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
