@@ -7,6 +7,7 @@ const Calificaciones = {
       const values = [id_inscripcion, calificacion, fecha, aprobado];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -18,6 +19,7 @@ const Calificaciones = {
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -29,6 +31,7 @@ const Calificaciones = {
       const { rows } = await pool.query(query, values);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -39,6 +42,7 @@ const Calificaciones = {
       const values = [nuevaCalificacion, nuevaFecha, nuevoEstadoAprobado, id_calificacion];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -49,6 +53,7 @@ const Calificaciones = {
       const values = [id_calificacion];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }

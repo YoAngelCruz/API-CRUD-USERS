@@ -9,6 +9,7 @@ const Alumnos = {
       const values = [nombre, clave, turno, fecha_inicio, edad, curp, domicilio, num_tel_a, email, hashedPassword, tutor]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -20,6 +21,7 @@ const Alumnos = {
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -30,6 +32,7 @@ const Alumnos = {
       const { rows } = await pool.query(query);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -41,6 +44,7 @@ const Alumnos = {
       const { rows } = await pool.query(query, values);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -59,6 +63,7 @@ const Alumnos = {
       const { rows } = await pool.query(query, values);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -69,6 +74,7 @@ const Alumnos = {
       const values = [nombre, clave, edad, curp, domicilio, num_tel_a, email, turno, fecha_inicio, tutor, id]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -80,6 +86,7 @@ const Alumnos = {
       const values = [hashedPassword, id]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -90,6 +97,7 @@ const Alumnos = {
       const values = [id];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -100,6 +108,7 @@ const Alumnos = {
       const values = [id_alumno, id_grupo, fecha];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }

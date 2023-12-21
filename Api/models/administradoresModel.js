@@ -9,6 +9,7 @@ const Administradores = {
       const values = [nombre, num_tel_a, email, hashedPassword]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -20,6 +21,7 @@ const Administradores = {
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -30,6 +32,7 @@ const Administradores = {
       const { rows } = await pool.query(query);
       return rows;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -40,6 +43,7 @@ const Administradores = {
       const values = [nombre, num_tel_a, email, id]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -51,6 +55,7 @@ const Administradores = {
       const values = [hashedPassword, id]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -61,6 +66,7 @@ const Administradores = {
       const values = [id];
       await pool.query(query, values);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
