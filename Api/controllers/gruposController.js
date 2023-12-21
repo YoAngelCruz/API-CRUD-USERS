@@ -50,14 +50,14 @@ const GruposController = {
 
   async actualizarDatosGrupo(req, res) {
     const { id_grupo } = req.params;
-    const { id_profesor, id_modulo, fecha_inicio, fecha_fin } = req.body;
+    const { descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin } = req.body;
     try {
       const grupo = await Grupos.obtenerGrupoPorId(id_grupo);
       if (!grupo) {
         return res.status(404).json({ message: 'El grupo no se encuentra registrado' });
       }
 
-      await Grupos.actualizarDatosGrupo(id_grupo, id_profesor, id_modulo, fecha_inicio, fecha_fin);
+      await Grupos.actualizarDatosGrupo(id_grupo, descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin);
       res.status(200).json({ message: 'Datos del grupo actualizados correctamente' });
     } catch (error) {
       console.error(error);
