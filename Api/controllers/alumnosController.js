@@ -31,6 +31,7 @@ const AlumnosController = {
       );
       res.status(201).json({ message: 'Alumno creado correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al crear el alumno' });
     }
   },
@@ -45,6 +46,7 @@ const AlumnosController = {
       
       res.status(200).json(alumno);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener el alumno' });
     }
   },
@@ -54,6 +56,7 @@ const AlumnosController = {
       const alumnos = await Alumnos.obtenerTodosLosAlumnos();
       res.status(200).json(alumnos);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener todos los alumnos' });
     }
   },
@@ -64,6 +67,7 @@ const AlumnosController = {
       const modulosCursados = await Alumnos.obtenerModulosCursadosPorAlumno(id_alumno);
       res.status(200).json(modulosCursados);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener los módulos cursados por el alumno' });
     }
   },
@@ -74,6 +78,7 @@ const AlumnosController = {
       const modulosConCalificaciones = await Alumnos.obtenerModulosConCalificaciones(id_alumno);
       res.status(200).json(modulosConCalificaciones);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener los módulos con calificaciones del alumno' });
     }
   },
@@ -91,6 +96,7 @@ const AlumnosController = {
       await Alumnos.actualizarDatosAlumno(id, nombre, clave, edad, curp, domicilio, num_tel_a, email, turno, fecha_inicio, tutor);
       res.status(200).json({ message: 'Datos del alumno actualizados correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar los datos del alumno' });
     }
   },
@@ -108,6 +114,7 @@ const AlumnosController = {
       await Alumnos.actualizarContraseñaAlumno(id, contraseña);
       res.status(200).json({ message: 'Contraseña del alumno actualizada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar la Contraseña del alumno' });
     }
   },
@@ -123,6 +130,7 @@ const AlumnosController = {
       await Alumnos.eliminarAlumno(id);
       res.status(200).json({ message: 'Alumno eliminado correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al eliminar el alumno' });
     }
   },
@@ -134,6 +142,7 @@ const AlumnosController = {
       await Alumnos.inscribirseAGrupo(id_alumno, id_grupo, fecha);
       res.status(200).json({ message: 'Alumno inscrito correctamente en el grupo' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al inscribir el alumno en el grupo' });
     }
   },

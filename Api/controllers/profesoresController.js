@@ -7,6 +7,7 @@ const ProfesoresController = {
       await Profesores.crearProfesor(nombre, num_tel_p, email, contraseña);
       res.status(201).json({ message: 'Profesor creado correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al crear el profesor' });
     }
   },
@@ -21,6 +22,7 @@ const ProfesoresController = {
 
       res.status(200).json(profesor);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener el profesor' });
     }
   },
@@ -30,6 +32,7 @@ const ProfesoresController = {
       const profesores = await Profesores.obtenerTodosLosProfesores();
       res.status(200).json(profesores);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener todos los profesores' });
     }
   },
@@ -40,6 +43,7 @@ const ProfesoresController = {
       const grupos = await Profesores.obtenerGruposImpartidosPorProfesor(id_profesor);
       res.status(200).json(grupos);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener los grupos impartidos por el profesor' });
     }
   },
@@ -57,6 +61,7 @@ const ProfesoresController = {
       await Profesores.actualizarDatosProfesor(id, nombre, num_tel_p, email);
       res.status(200).json({ message: 'Datos del profesor actualizados correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar los datos del profesor' });
     }
   },
@@ -74,6 +79,7 @@ const ProfesoresController = {
       await Profesores.actualizarContraseñaProfesor(id, contraseña);
       res.status(200).json({ message: 'Contraseña del profesor actualizada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar la contraseña del profesor' });
     }
   },
@@ -89,6 +95,7 @@ const ProfesoresController = {
       await Profesores.eliminarProfesor(id);
       res.status(200).json({ message: 'Profesor eliminado correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al eliminar el profesor' });
     }
   },
@@ -99,6 +106,7 @@ const ProfesoresController = {
       await Profesores.asignarProfesorAGrupo(id_profesor, id_grupo);
       res.status(200).json({ message: 'Profesor asignado correctamente al grupo' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al asignar el profesor al grupo' });
     }
   },
@@ -109,6 +117,7 @@ const ProfesoresController = {
       await Profesores.asignarCalificacion(id_grupo, id_alumno, calificacion);
       res.status(200).json({ message: 'Calificación asignada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al asignar la calificación' });
     }
   },

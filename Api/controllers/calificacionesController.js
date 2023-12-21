@@ -7,6 +7,7 @@ const CalificacionesController = {
       await Calificaciones.crearCalificacion(id_inscripcion, calificacion, fecha, aprobado);
       res.status(201).json({ message: 'Calificación creada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al crear la calificación' });
     }
   },
@@ -21,6 +22,7 @@ const CalificacionesController = {
       
       res.status(200).json(calificacion);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener la calificación' });
     }
   },
@@ -31,6 +33,7 @@ const CalificacionesController = {
       const calificaciones = await Calificaciones.obtenerCalificacionesPorAlumno(id_alumno);
       res.status(200).json(calificaciones);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al obtener las calificaciones del alumno' });
     }
   },
@@ -43,6 +46,7 @@ const CalificacionesController = {
       await Calificaciones.actualizarCalificacion(id_calificacion, calificacion, fecha, aprobado);
       res.status(200).json({ message: 'Calificación actualizada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar la calificación' });
     }
   },
@@ -58,6 +62,7 @@ const CalificacionesController = {
       await Calificaciones.eliminarCalificacion(id_calificacion);
       res.status(200).json({ message: 'Calificación eliminada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al eliminar la calificación' });
     }
   },

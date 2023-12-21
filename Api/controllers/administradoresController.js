@@ -50,6 +50,7 @@ const AdministradoresController = {
       await Administradores.actualizarDatosAdministrador(id, nombre, num_tel_a, email);
       res.status(200).json({ message: 'Datos del administrador actualizados correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar los datos del administrador' });
     }
   },
@@ -67,6 +68,7 @@ const AdministradoresController = {
       await Administradores.actualizarContraseñaAdministrador(id, contraseña);
       res.status(200).json({ message: 'Contraseña del administrador actualizada correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al actualizar la Contraseña del administrador' });
     }
   },
@@ -84,6 +86,7 @@ const AdministradoresController = {
       await Administradores.eliminarAdministrador(id);
       res.status(200).json({ message: 'Administrador eliminado correctamente' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al eliminar el administrador' });
     }
   },
