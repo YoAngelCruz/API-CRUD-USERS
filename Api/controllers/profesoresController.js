@@ -12,9 +12,9 @@ const ProfesoresController = {
   },
 
   async obtenerProfesorPorId(req, res) {
-    const { id_profesor } = req.params;
+    const { id } = req.params;
     try {
-      const profesor = await Profesores.obtenerProfesorPorId(id_profesor);
+      const profesor = await Profesores.obtenerProfesorPorId(id);
       if (!profesor) {
         return res.status(404).json({ message: 'El profesor no se encuentra registrado' });
       }
@@ -45,30 +45,48 @@ const ProfesoresController = {
   },
 
   async actualizarDatosProfesor(req, res) {
-    const { id_profesor } = req.params;
-    const { contraseña } = req.body;
+    const { id } = req.params;
+    const { nombre, num_tel_p, email } = req.body;
     try {
-      const profesor = await Profesores.obtenerProfesorPorId(id_profesor);
+      const profesor = await Profesores.obtenerProfesorPorId(id);
+  
       if (!profesor) {
         return res.status(404).json({ message: 'El profesor no se encuentra registrado' });
       }
-      
-      await Profesores.actualizarDatosProfesor(id_profesor, contraseña);
+
+      await Profesores.actualizarDatosProfesor(id, nombre, num_tel_p, email);
       res.status(200).json({ message: 'Datos del profesor actualizados correctamente' });
     } catch (error) {
       res.status(500).json({ error: 'Error al actualizar los datos del profesor' });
     }
   },
 
-  async eliminarProfesor(req, res) {
-    const { id_profesor } = req.params;
+  async actualizarContraseñaProfesor(req, res) {
+    const { id } = req.params;
+    const { contraseña } = req.body;
     try {
-      const profesor = await Profesores.obtenerProfesorPorId(id_profesor);
+      const profesor = await Profesores.obtenerProfesorPorId(id);
+  
+      if (!profesor) {
+        return res.status(404).json({ message: 'El profesor no se encuentra registrado' });
+      }
+
+      await Profesores.actualizarContraseñaProfesor(id, contraseña);
+      res.status(200).json({ message: 'Contraseña del profesor actualizada correctamente' });
+    } catch (error) {
+      res.status(500).json({ error: 'Error al actualizar la contraseña del profesor' });
+    }
+  },
+
+  async eliminarProfesor(req, res) {
+    const { id } = req.params;
+    try {
+      const profesor = await Profesores.obtenerProfesorPorId(id);
       if (!profesor) {
         return res.status(404).json({ message: 'El profesor no se encuentra registrado' });
       }
       
-      await Profesores.eliminarProfesor(id_profesor);
+      await Profesores.eliminarProfesor(id);
       res.status(200).json({ message: 'Profesor eliminado correctamente' });
     } catch (error) {
       res.status(500).json({ error: 'Error al eliminar el profesor' });

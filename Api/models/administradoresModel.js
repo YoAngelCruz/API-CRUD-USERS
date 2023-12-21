@@ -13,10 +13,10 @@ const Administradores = {
     }
   },
 
-  async obtenerAdministradorPorId(id_admin) {
+  async obtenerAdministradorPorId(id) {
     try {
       const query = 'SELECT * FROM administradores WHERE id = $1';
-      const values = [id_admin];
+      const values = [id];
       const { rows } = await pool.query(query, values);
       return rows[0];
     } catch (error) {
@@ -34,21 +34,31 @@ const Administradores = {
     }
   },
 
-  async actualizarDatosAdministrador(id_admin, nombre, num_tel_a, email, contraseña) {
+  async actualizarDatosAdministrador(id, nombre, num_tel_a, email) {
     try {
-      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
-      const query = 'UPDATE administradores SET nombre = $1, num_tel_a = $2, email = $3, contraseña = $4 WHERE id = $5';
-      const values = [nombre, num_tel_a, email, hashedPassword, id_admin]; // Usa la contraseña encriptada
+      const query = 'UPDATE administradores SET nombre = $1, num_tel_a = $2, email = $3 WHERE id = $4';
+      const values = [nombre, num_tel_a, email, id]; // Usa la contraseña encriptada
       await pool.query(query, values);
     } catch (error) {
       throw error;
     }
   },
 
-  async eliminarAdministrador(id_admin) {
+  async actualizarContraseñaAdministrador(id, contraseña) {
+    try {
+      const hashedPassword = await bcrypt.hash(contraseña, 10); // Encripta la contraseña
+      const query = 'UPDATE administradores SET contraseña = $1 WHERE id = $2';
+      const values = [hashedPassword, id]; // Usa la contraseña encriptada
+      await pool.query(query, values);
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async eliminarAdministrador(id) {
     try {
       const query = 'DELETE FROM administradores WHERE id = $1';
-      const values = [id_admin];
+      const values = [id];
       await pool.query(query, values);
     } catch (error) {
       throw error;

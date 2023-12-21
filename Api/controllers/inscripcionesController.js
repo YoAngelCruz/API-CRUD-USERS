@@ -11,6 +11,19 @@ const InscripcionesController = {
     }
   },
 
+  async crearInscripciones(req, res) {
+    const { id_grupo, listaAlumnos } = req.body;
+    const alumnosIds = listaAlumnos.map(alumno => alumno.id_alumno); // Extraer solo los IDs de los alumnos
+
+    try {
+        await Inscripciones.crearInscripciones(id_grupo, alumnosIds);
+        res.status(201).json({ message: 'Inscripciones creadas correctamente' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al crear las inscripciones' });
+    }
+},
+
   async obtenerInscripcionPorId(req, res) {
     const { id_inscripcion } = req.params;
     try {

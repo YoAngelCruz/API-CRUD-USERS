@@ -4,9 +4,10 @@ const AdministradoresController = require('../controllers/administradoresControl
 
 // Rutas para administradores
 router.post('/administradores', AdministradoresController.crearAdministrador);
-router.get('/administradores/:id_admin', AdministradoresController.obtenerAdministradorPorId);
+router.get('/administradores/:id', AdministradoresController.obtenerAdministradorPorId);
 router.get('/administradores', AdministradoresController.obtenerTodosLosAdministradores);
-router.put('/administradores/:id_admin', AdministradoresController.actualizarDatosAdministrador);
-router.delete('/administradores/:id_admin', AdministradoresController.eliminarAdministrador);
+router.put('/administradores/:id', AdministradoresController.actualizarDatosAdministrador);
+router.put('/administradores/pass/:id', AdministradoresController.actualizarContraseñaAdministrador);
+router.delete('/administradores/:id', AdministradoresController.eliminarAdministrador);
 
 module.exports = router;
