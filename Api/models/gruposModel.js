@@ -37,15 +37,15 @@ const Grupos = {
 
   async obtenerAlumnosPorGrupo(id_grupo) {
     try {
-      const query = 'SELECT alumnos.* FROM alumnos INNER JOIN inscripcion ON alumnos.id = inscripcion.id_alumno WHERE inscripcion.id_grupo = $1';
-      const values = [id_grupo];
-      const { rows } = await pool.query(query, values);
-      return rows;
+        const query = 'SELECT alumnos.*, inscripcion.id_inscripcion FROM alumnos INNER JOIN inscripcion ON alumnos.id = inscripcion.id_alumno WHERE inscripcion.id_grupo = $1';
+        const values = [id_grupo];
+        const { rows } = await pool.query(query, values);
+        return rows;
     } catch (error) {
-      console.error(error);
-      throw error;
+        console.error(error);
+        throw error;
     }
-  },
+},
 
   async actualizarDatosGrupo(id_grupo, descripcion, id_profesor, id_modulo, fecha_inicio, fecha_fin) {
     try {
