@@ -37,7 +37,12 @@ const Grupos = {
 
   async obtenerAlumnosPorGrupo(id_grupo) {
     try {
-        const query = 'SELECT alumnos.*, inscripcion.id_inscripcion FROM alumnos INNER JOIN inscripcion ON alumnos.id = inscripcion.id_alumno WHERE inscripcion.id_grupo = $1';
+        const query = `
+            SELECT alumnos.*, inscripcion.id_inscripcion, calificacion.calificacion
+            FROM alumnos 
+            INNER JOIN inscripcion ON alumnos.id = inscripcion.id_alumno 
+            LEFT JOIN calificacion ON inscripcion.id_inscripcion = calificacion.id_inscripcion
+            WHERE inscripcion.id_grupo = $1`;
         const values = [id_grupo];
         const { rows } = await pool.query(query, values);
         return rows;
