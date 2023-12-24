@@ -38,7 +38,7 @@ const Grupos = {
   async obtenerAlumnosPorGrupo(id_grupo) {
     try {
         const query = `
-            SELECT alumnos.*, inscripcion.id_inscripcion, calificacion.calificacion
+            SELECT alumnos.*, inscripcion.id_inscripcion, calificacion.id_calificacion, calificacion.calificacion
             FROM alumnos 
             INNER JOIN inscripcion ON alumnos.id = inscripcion.id_alumno 
             LEFT JOIN calificacion ON inscripcion.id_inscripcion = calificacion.id_inscripcion
