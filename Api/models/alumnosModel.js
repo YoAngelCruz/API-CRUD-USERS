@@ -52,7 +52,7 @@ const Alumnos = {
   async obtenerModulosConCalificaciones(id_alumno) {
     try {
       const query = `
-        SELECT modulos.*, calificacion.calificacion
+        SELECT modulos.*, calificacion.calificacion, calificacion.periodo
         FROM modulos
         INNER JOIN grupo ON modulos.id_modulo = grupo.id_modulo
         INNER JOIN inscripcion ON grupo.id_grupo = inscripcion.id_grupo
