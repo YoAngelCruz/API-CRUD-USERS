@@ -1,10 +1,10 @@
 const pool = require('../config/db');
 
 const Calificaciones = {
-  async crearCalificacion(id_inscripcion, calificacion, fecha, aprobado) {
+  async crearCalificacion(id_inscripcion, calificacion, fecha, aprobado, periodo) {
     try {
-      const query = 'INSERT INTO calificacion (id_inscripcion, calificacion, fecha, aprobado) VALUES ($1, $2, $3, $4)';
-      const values = [id_inscripcion, calificacion, fecha, aprobado];
+      const query = 'INSERT INTO calificacion (id_inscripcion, calificacion, fecha, aprobado, periodo) VALUES ($1, $2, $3, $4, $5)';
+      const values = [id_inscripcion, calificacion, fecha, aprobado, periodo];
       await pool.query(query, values);
     } catch (error) {
       console.error(error);
@@ -36,10 +36,10 @@ const Calificaciones = {
     }
   },
 
-  async actualizarCalificacion(id_calificacion, nuevaCalificacion, nuevaFecha, nuevoEstadoAprobado) {
+  async actualizarCalificacion(id_calificacion, nuevaCalificacion, nuevaFecha, nuevoEstadoAprobado, periodo) {
     try {
-      const query = 'UPDATE calificacion SET calificacion = $1, fecha = $2, aprobado = $3 WHERE id_calificacion = $4';
-      const values = [nuevaCalificacion, nuevaFecha, nuevoEstadoAprobado, id_calificacion];
+      const query = 'UPDATE calificacion SET calificacion = $1, fecha = $2, aprobado = $3, periodo = $4 WHERE id_calificacion = $5';
+      const values = [nuevaCalificacion, nuevaFecha, nuevoEstadoAprobado, periodo, id_calificacion ];
       await pool.query(query, values);
     } catch (error) {
       console.error(error);
