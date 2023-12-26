@@ -2,9 +2,9 @@ const Calificaciones = require('../models/calificacionesModel');
 
 const CalificacionesController = {
   async crearCalificacion(req, res) {
-    const { id_inscripcion, calificacion, fecha, aprobado } = req.body;
+    const { id_inscripcion, calificacion, fecha, aprobado, periodo } = req.body;
     try {
-      await Calificaciones.crearCalificacion(id_inscripcion, calificacion, fecha, aprobado);
+      await Calificaciones.crearCalificacion(id_inscripcion, calificacion, fecha, aprobado, periodo);
       res.status(201).json({ message: 'Calificación creada correctamente' });
     } catch (error) {
       console.error(error);
@@ -40,10 +40,10 @@ const CalificacionesController = {
 
   async actualizarCalificacion(req, res) {
     const { id_calificacion } = req.params;
-    const { calificacion, fecha, aprobado } = req.body;
+    const { calificacion, fecha, aprobado, periodo } = req.body;
     try {
       
-      await Calificaciones.actualizarCalificacion(id_calificacion, calificacion, fecha, aprobado);
+      await Calificaciones.actualizarCalificacion(id_calificacion, calificacion, fecha, aprobado, periodo);
       res.status(200).json({ message: 'Calificación actualizada correctamente' });
     } catch (error) {
       console.error(error);
