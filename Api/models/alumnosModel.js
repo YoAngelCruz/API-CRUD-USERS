@@ -39,7 +39,12 @@ const Alumnos = {
 
   async obtenerModulosCursadosPorAlumno(id_alumno) {
     try {
-      const query = 'SELECT modulos.* FROM modulos INNER JOIN grupo ON modulos.id_modulo = grupo.id_modulo INNER JOIN inscripcion ON grupo.id_grupo = inscripcion.id_grupo WHERE inscripcion.id_alumno = $1';
+      const query = `
+        SELECT grupo.id_grupo, modulos.*, grupo.fecha_inicio, grupo.fecha_fin
+        FROM modulos 
+        INNER JOIN grupo ON modulos.id_modulo = grupo.id_modulo
+        INNER JOIN inscripcion ON grupo.id_grupo = inscripcion.id_grupo
+        WHERE inscripcion.id_alumno = $1`;
       const values = [id_alumno];
       const { rows } = await pool.query(query, values);
       return rows;
@@ -52,7 +57,7 @@ const Alumnos = {
   async obtenerModulosConCalificaciones(id_alumno) {
     try {
       const query = `
-        SELECT modulos.*, calificacion.calificacion, calificacion.periodo
+        SELECT grupo.id_grupo, modulos.*, calificacion.calificacion, calificacion.aprobado, calificacion.periodo, grupo.fecha_inicio, grupo.fecha_fin
         FROM modulos
         INNER JOIN grupo ON modulos.id_modulo = grupo.id_modulo
         INNER JOIN inscripcion ON grupo.id_grupo = inscripcion.id_grupo
