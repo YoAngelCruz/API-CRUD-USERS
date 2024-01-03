@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: icecapi-yoangelcruz
+  name: icec-crud
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: icecapi-yoangelcruz
+      app: icec-crud
   template:
     metadata:
       labels:
-        app: icecapi-yoangelcruz
+        app: icec-crud
     spec:
       containers:
-      - image: okteto.dev/icecapi-yoangelcruz:latest
+      - image: okteto.dev/icec-crud:latest
         name: icecapi
         envFrom:
         - configMapRef:
@@ -29,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: icecapi-yoangelcruz
+  name: icec-crud
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "icecapi-yoangelcruz"
+  - name: "icec-crud"
     port: 3000
   selector:
-    app: icecapi-yoangelcruz
+    app: icec-crud

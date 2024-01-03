@@ -51,5 +51,5 @@ jobs:
     - name: Deploy
       uses: okteto/pipeline@2.7.0
       with:
-          name: icecapi-yoangelcruz # cambiar por su namespace
+          name: icec-crud # cambiar por su namespace
           timeout: 10m
