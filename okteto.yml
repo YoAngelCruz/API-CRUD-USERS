@@ -1,12 +1,12 @@
 build:
- icecapi-yoangelcruz:  # cambiar por su namespace de okteto
-   image: okteto.dev/icecapi-yoangelcruz:latest  # cambiar por su namespace de okteto
+ icec-crud:  # cambiar por su namespace de okteto
+   image: okteto.dev/icec-crud:latest  # cambiar por su namespace de okteto
 
 deploy:
  - okteto build # build the image with the latest code
  - kubectl apply -f manifests # create all the resources in kubernetes
 dev:
- icecapi-yoangelcruz:
+ icec-crud:
    command: bash
    sync:
    - .:/api-crud-users   # cambiar por su proyecto
